@@ -1,0 +1,144 @@
+04:56:19,648 INFO  [stdout] (Thread-92) RefactorPlanner started...
+04:56:19,649 INFO  [stdout] (Thread-92) (define (problem payment)
+04:56:19,649 INFO  [stdout] (Thread-92) (:domain arch)
+04:56:19,649 INFO  [stdout] (Thread-92) (:objects
+04:56:19,649 INFO  [stdout] (Thread-92) PaymentGatewayref PassengerUI - component
+04:56:19,649 INFO  [stdout] (Thread-92) paywireref paywire - connector
+04:56:19,649 INFO  [stdout] (Thread-92) commitref call pay plogin - port
+04:56:19,649 INFO  [stdout] (Thread-92) requester-paywireref responder-paywireref writer-paywire writestorage-paywire - role
+04:56:19,649 INFO  [stdout] (Thread-92) )
+04:56:19,649 INFO  [stdout] (Thread-92) (:init
+04:56:19,650 INFO  [stdout] (Thread-92) (disabled-connector paywireref)
+04:56:19,650 INFO  [stdout] (Thread-92) (hasrole paywireref requester-paywireref)
+04:56:19,650 INFO  [stdout] (Thread-92) (hasrole paywireref responder-paywireref)
+04:56:19,650 INFO  [stdout] (Thread-92) (disabled-component PaymentGatewayref)
+04:56:19,650 INFO  [stdout] (Thread-92) (hasport PaymentGatewayref commitref)
+04:56:19,650 INFO  [stdout] (Thread-92) (enabled-component PassengerUI)
+04:56:19,650 INFO  [stdout] (Thread-92) (hasport PassengerUI call)
+04:56:19,650 INFO  [stdout] (Thread-92) (hasport PassengerUI pay)
+04:56:19,650 INFO  [stdout] (Thread-92) (attach PassengerUI pay paywire writer-paywire)
+04:56:19,650 INFO  [stdout] (Thread-92) (hasport PassengerUI plogin)
+04:56:19,650 INFO  [stdout] (Thread-92) (enabled-connector paywire)
+04:56:19,650 INFO  [stdout] (Thread-92) (hasrole paywire writer-paywire)
+04:56:19,651 INFO  [stdout] (Thread-92) (hasrole paywire writestorage-paywire)
+04:56:19,651 INFO  [stdout] (Thread-92) )
+04:56:19,651 INFO  [stdout] (Thread-92) (:goal (and
+04:56:19,651 INFO  [stdout] (Thread-92) (disabled-connector paywire)
+04:56:19,651 INFO  [stdout] (Thread-92) (attach PassengerUI pay paywireref requester-paywireref)
+04:56:19,651 INFO  [stdout] (Thread-92) (attach PaymentGatewayref commitref paywireref responder-paywireref)
+04:56:19,651 INFO  [stdout] (Thread-92) )))
+04:56:19,651 INFO  [stdout] (Thread-92) 
+04:56:20,059 INFO  [stdout] (Thread-92) Factory initiates....
+04:56:20,095 INFO  [stdout] (Thread-92) * starting search strategy
+04:56:20,119 INFO  [stdout] (Thread-92) java.lang.IllegalStateException: Instrumentation environment not initialised.
+04:56:20,119 INFO  [stdout] (Thread-92) java.lang.IllegalStateException: Instrumentation environment not initialised.
+04:56:20,119 INFO  [stdout] (Thread-92) * search strategy succeeded
+04:56:20,120 INFO  [stdout] (Thread-92) Output:5
+04:56:20,121 INFO  [stdout] (Thread-92) #### start given plan.....
+04:56:20,121 INFO  [stdout] (Thread-92) setup-connectorconnector:paywireref
+04:56:20,122 INFO  [stdout] (Thread-92) establish-linkcomponent:passengeruiport:payconnector:paywirerefrole:requester-paywireref
+04:56:20,122 INFO  [stdout] (Thread-92) setup-componentcomponent:paymentgatewayref
+04:56:20,122 INFO  [stdout] (Thread-92) remove-connectorconnector:paywire
+04:56:20,122 INFO  [stdout] (Thread-92) establish-linkcomponent:paymentgatewayrefport:commitrefconnector:paywirerefrole:responder-paywireref
+04:56:20,122 INFO  [stdout] (Thread-92) #### end given plan.....
+04:56:20,123 INFO  [stdout] (Thread-92) Elapse Time: 473
+04:56:20,254 INFO  [stdout] (Thread-93) RefactorPlanner started...
+04:56:20,255 INFO  [stdout] (Thread-93) (define (problem signon)
+04:56:20,255 INFO  [stdout] (Thread-93) (:domain arch)
+04:56:20,255 INFO  [stdout] (Thread-93) (:objects
+04:56:20,255 INFO  [stdout] (Thread-93) SSOServerref PassengerUI - component
+04:56:20,255 INFO  [stdout] (Thread-93) tokenwireref - connector
+04:56:20,255 INFO  [stdout] (Thread-93) ssologinref issueref call pay plogin - port
+04:56:20,255 INFO  [stdout] (Thread-93) requester-tokenwireref responder-tokenwireref - role
+04:56:20,256 INFO  [stdout] (Thread-93) )
+04:56:20,256 INFO  [stdout] (Thread-93) (:init
+04:56:20,256 INFO  [stdout] (Thread-93) (disabled-connector tokenwireref)
+04:56:20,256 INFO  [stdout] (Thread-93) (hasrole tokenwireref requester-tokenwireref)
+04:56:20,256 INFO  [stdout] (Thread-93) (hasport PassengerUI ssologinref)
+04:56:20,256 INFO  [stdout] (Thread-93) (hasrole tokenwireref responder-tokenwireref)
+04:56:20,256 INFO  [stdout] (Thread-93) (disabled-component SSOServerref)
+04:56:20,256 INFO  [stdout] (Thread-93) (hasport SSOServerref issueref)
+04:56:20,256 INFO  [stdout] (Thread-93) (enabled-component PassengerUI)
+04:56:20,256 INFO  [stdout] (Thread-93) (hasport PassengerUI call)
+04:56:20,256 INFO  [stdout] (Thread-93) (hasport PassengerUI pay)
+04:56:20,257 INFO  [stdout] (Thread-93) (hasport PassengerUI plogin)
+04:56:20,257 INFO  [stdout] (Thread-93) )
+04:56:20,257 INFO  [stdout] (Thread-93) (:goal (and
+04:56:20,257 INFO  [stdout] (Thread-93) (attach PassengerUI ssologinref tokenwireref requester-tokenwireref)
+04:56:20,257 INFO  [stdout] (Thread-93) (attach SSOServerref issueref tokenwireref responder-tokenwireref)
+04:56:20,257 INFO  [stdout] (Thread-93) )))
+04:56:20,257 INFO  [stdout] (Thread-93) 
+04:56:20,257 INFO  [stdout] (Thread-93) Factory initiates....
+04:56:20,267 INFO  [stdout] (Thread-93) * starting search strategy
+04:56:20,272 INFO  [stdout] (Thread-93) java.lang.IllegalStateException: Instrumentation environment not initialised.
+04:56:20,275 INFO  [stdout] (Thread-93) java.lang.IllegalStateException: Instrumentation environment not initialised.
+04:56:20,275 INFO  [stdout] (Thread-93) * search strategy succeeded
+04:56:20,275 INFO  [stdout] (Thread-93) Output:4
+04:56:20,276 INFO  [stdout] (Thread-93) #### start given plan.....
+04:56:20,276 INFO  [stdout] (Thread-93) setup-connectorconnector:tokenwireref
+04:56:20,276 INFO  [stdout] (Thread-93) establish-linkcomponent:passengeruiport:ssologinrefconnector:tokenwirerefrole:requester-tokenwireref
+04:56:20,276 INFO  [stdout] (Thread-93) setup-componentcomponent:ssoserverref
+04:56:20,276 INFO  [stdout] (Thread-93) establish-linkcomponent:ssoserverrefport:issuerefconnector:tokenwirerefrole:responder-tokenwireref
+04:56:20,276 INFO  [stdout] (Thread-93) #### end given plan.....
+04:56:20,277 INFO  [stdout] (Thread-93) Elapse Time: 21
+04:56:20,287 INFO  [stdout] (Thread-94) RefactorPlanner started...
+04:56:20,288 INFO  [stdout] (Thread-94) (define (problem deliverer)
+04:56:20,288 INFO  [stdout] (Thread-94) (:domain arch)
+04:56:20,288 INFO  [stdout] (Thread-94) (:objects
+04:56:20,288 INFO  [stdout] (Thread-94) EatUIref TripMgmt DriverUI DriverRecord AssignwireLog - component
+04:56:20,288 INFO  [stdout] (Thread-94) callwire assignwire driverquerywire - connector
+04:56:20,288 INFO  [stdout] (Thread-94) callref accept notify dlogin locate driverquery driverupdate logassign - port
+04:56:20,288 INFO  [stdout] (Thread-94) requester-callwire responder-callwire querier-driverquerywire readstore-driverquerywire eventpublisher-assignwire eventstore-assignwire eventsubscriber-assignwire - role
+04:56:20,288 INFO  [stdout] (Thread-94) )
+04:56:20,288 INFO  [stdout] (Thread-94) (:init
+04:56:20,288 INFO  [stdout] (Thread-94) (hasrole callwire requester-callwire)
+04:56:20,289 INFO  [stdout] (Thread-94) (disabled-component EatUIref)
+04:56:20,289 INFO  [stdout] (Thread-94) (hasport EatUIref callref)
+04:56:20,289 INFO  [stdout] (Thread-94) (hasrole callwire responder-callwire)
+04:56:20,289 INFO  [stdout] (Thread-94) (hasrole driverquerywire querier-driverquerywire)
+04:56:20,289 INFO  [stdout] (Thread-94) (hasrole driverquerywire readstore-driverquerywire)
+04:56:20,289 INFO  [stdout] (Thread-94) (hasrole assignwire eventpublisher-assignwire)
+04:56:20,289 INFO  [stdout] (Thread-94) (hasrole assignwire eventstore-assignwire)
+04:56:20,289 INFO  [stdout] (Thread-94) (hasrole assignwire eventsubscriber-assignwire)
+04:56:20,289 INFO  [stdout] (Thread-94) (enabled-component TripMgmt)
+04:56:20,289 INFO  [stdout] (Thread-94) (hasport TripMgmt accept)
+04:56:20,289 INFO  [stdout] (Thread-94) (attach TripMgmt accept callwire responder-callwire)
+04:56:20,289 INFO  [stdout] (Thread-94) (attach TripMgmt accept assignwire eventpublisher-assignwire)
+04:56:20,289 INFO  [stdout] (Thread-94) (attach TripMgmt accept driverquerywire querier-driverquerywire)
+04:56:20,289 INFO  [stdout] (Thread-94) (enabled-component DriverUI)
+04:56:20,289 INFO  [stdout] (Thread-94) (hasport DriverUI notify)
+04:56:20,290 INFO  [stdout] (Thread-94) (attach DriverUI notify assignwire eventsubscriber-assignwire)
+04:56:20,290 INFO  [stdout] (Thread-94) (hasport DriverUI dlogin)
+04:56:20,290 INFO  [stdout] (Thread-94) (hasport DriverUI locate)
+04:56:20,290 INFO  [stdout] (Thread-94) (enabled-component DriverRecord)
+04:56:20,290 INFO  [stdout] (Thread-94) (hasport DriverRecord driverquery)
+04:56:20,290 INFO  [stdout] (Thread-94) (attach DriverRecord driverquery driverquerywire readstore-driverquerywire)
+04:56:20,290 INFO  [stdout] (Thread-94) (hasport DriverRecord driverupdate)
+04:56:20,290 INFO  [stdout] (Thread-94) (enabled-component AssignwireLog)
+04:56:20,290 INFO  [stdout] (Thread-94) (hasport AssignwireLog logassign)
+04:56:20,290 INFO  [stdout] (Thread-94) (attach AssignwireLog logassign assignwire eventstore-assignwire)
+04:56:20,290 INFO  [stdout] (Thread-94) (enabled-connector callwire)
+04:56:20,290 INFO  [stdout] (Thread-94) (enabled-connector assignwire)
+04:56:20,290 INFO  [stdout] (Thread-94) (enabled-connector driverquerywire)
+04:56:20,290 INFO  [stdout] (Thread-94) )
+04:56:20,290 INFO  [stdout] (Thread-94) (:goal (and
+04:56:20,290 INFO  [stdout] (Thread-94) (attach EatUIref callref callwire requester-callwire)
+04:56:20,291 INFO  [stdout] (Thread-94) (attach TripMgmt accept callwire responder-callwire)
+04:56:20,291 INFO  [stdout] (Thread-94) (attach TripMgmt accept driverquerywire querier-driverquerywire)
+04:56:20,291 INFO  [stdout] (Thread-94) (attach DriverRecord driverquery driverquerywire readstore-driverquerywire)
+04:56:20,291 INFO  [stdout] (Thread-94) (attach TripMgmt accept assignwire eventpublisher-assignwire)
+04:56:20,291 INFO  [stdout] (Thread-94) (attach AssignwireLog logassign assignwire eventstore-assignwire)
+04:56:20,291 INFO  [stdout] (Thread-94) (attach DriverUI notify assignwire eventsubscriber-assignwire)
+04:56:20,291 INFO  [stdout] (Thread-94) )))
+04:56:20,291 INFO  [stdout] (Thread-94) 
+04:56:20,291 INFO  [stdout] (Thread-94) Factory initiates....
+04:56:20,303 INFO  [stdout] (Thread-94) * starting search strategy
+04:56:20,322 INFO  [stdout] (Thread-94) java.lang.IllegalStateException: Instrumentation environment not initialised.
+04:56:20,323 INFO  [stdout] (Thread-94) java.lang.IllegalStateException: Instrumentation environment not initialised.
+04:56:20,324 INFO  [stdout] (Thread-94) * search strategy succeeded
+04:56:20,324 INFO  [stdout] (Thread-94) Output:2
+04:56:20,324 INFO  [stdout] (Thread-94) #### start given plan.....
+04:56:20,324 INFO  [stdout] (Thread-94) setup-componentcomponent:eatuiref
+04:56:20,324 INFO  [stdout] (Thread-94) establish-linkcomponent:eatuirefport:callrefconnector:callwirerole:requester-callwire
+04:56:20,324 INFO  [stdout] (Thread-94) #### end given plan.....
+04:56:20,324 INFO  [stdout] (Thread-94) Elapse Time: 36

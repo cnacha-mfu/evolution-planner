@@ -1,0 +1,115 @@
+06:32:36,622 INFO  [stdout] (Thread-99) RefactorPlanner started...
+06:32:36,622 INFO  [stdout] (Thread-99) (define (problem lifefriend)
+06:32:36,622 INFO  [stdout] (Thread-99) (:domain arch)
+06:32:36,622 INFO  [stdout] (Thread-99) (:objects
+06:32:36,622 INFO  [stdout] (Thread-99) LifeFriendref Patient - component
+06:32:36,623 INFO  [stdout] (Thread-99) ptwire - connector
+06:32:36,623 INFO  [stdout] (Thread-99) cnotifyref ptaccess ptupdate - port
+06:32:36,623 INFO  [stdout] (Thread-99) reader-ptwire readstorage-ptwire - role
+06:32:36,623 INFO  [stdout] (Thread-99) )
+06:32:36,623 INFO  [stdout] (Thread-99) (:init
+06:32:36,623 INFO  [stdout] (Thread-99) (hasrole ptwire reader-ptwire)
+06:32:36,623 INFO  [stdout] (Thread-99) (disabled-component LifeFriendref)
+06:32:36,623 INFO  [stdout] (Thread-99) (hasport LifeFriendref cnotifyref)
+06:32:36,623 INFO  [stdout] (Thread-99) (hasrole ptwire readstorage-ptwire)
+06:32:36,623 INFO  [stdout] (Thread-99) (enabled-component Patient)
+06:32:36,623 INFO  [stdout] (Thread-99) (hasport Patient ptaccess)
+06:32:36,623 INFO  [stdout] (Thread-99) (attach Patient ptaccess ptwire readstorage-ptwire)
+06:32:36,623 INFO  [stdout] (Thread-99) (hasport Patient ptupdate)
+06:32:36,624 INFO  [stdout] (Thread-99) (enabled-connector ptwire)
+06:32:36,624 INFO  [stdout] (Thread-99) )
+06:32:36,624 INFO  [stdout] (Thread-99) (:goal (and
+06:32:36,624 INFO  [stdout] (Thread-99) (attach LifeFriendref cnotifyref ptwire reader-ptwire)
+06:32:36,624 INFO  [stdout] (Thread-99) (attach Patient ptaccess ptwire readstorage-ptwire)
+06:32:36,624 INFO  [stdout] (Thread-99) )))
+06:32:36,624 INFO  [stdout] (Thread-99) 
+06:32:36,801 INFO  [stdout] (Thread-99) Factory initiates....
+06:32:36,840 INFO  [stdout] (Thread-99) * starting search strategy
+06:32:36,846 INFO  [stdout] (Thread-99) java.lang.IllegalStateException: Instrumentation environment not initialised.
+06:32:36,846 INFO  [stdout] (Thread-99) java.lang.IllegalStateException: Instrumentation environment not initialised.
+06:32:36,847 INFO  [stdout] (Thread-99) * search strategy succeeded
+06:32:36,848 INFO  [stdout] (Thread-99) Output:2
+06:32:36,848 INFO  [stdout] (Thread-99) #### start given plan.....
+06:32:36,849 INFO  [stdout] (Thread-99) setup-componentcomponent:lifefriendref
+06:32:36,849 INFO  [stdout] (Thread-99) establish-linkcomponent:lifefriendrefport:cnotifyrefconnector:ptwirerole:reader-ptwire
+06:32:36,849 INFO  [stdout] (Thread-99) #### end given plan.....
+06:32:36,849 INFO  [stdout] (Thread-99) Elapse Time: 227
+06:32:36,893 INFO  [stdout] (Thread-100) RefactorPlanner started...
+06:32:36,894 INFO  [stdout] (Thread-100) (define (problem payment)
+06:32:36,894 INFO  [stdout] (Thread-100) (:domain arch)
+06:32:36,894 INFO  [stdout] (Thread-100) (:objects
+06:32:36,894 INFO  [stdout] (Thread-100) LifeFriendref PaymentGatewayref - component
+06:32:36,894 INFO  [stdout] (Thread-100) paywireref - connector
+06:32:36,894 INFO  [stdout] (Thread-100) payref commitref - port
+06:32:36,894 INFO  [stdout] (Thread-100) requester-paywireref responder-paywireref - role
+06:32:36,894 INFO  [stdout] (Thread-100) )
+06:32:36,895 INFO  [stdout] (Thread-100) (:init
+06:32:36,895 INFO  [stdout] (Thread-100) (disabled-connector paywireref)
+06:32:36,895 INFO  [stdout] (Thread-100) (hasrole paywireref requester-paywireref)
+06:32:36,895 INFO  [stdout] (Thread-100) (disabled-component LifeFriendref)
+06:32:36,895 INFO  [stdout] (Thread-100) (hasport LifeFriendref payref)
+06:32:36,895 INFO  [stdout] (Thread-100) (hasrole paywireref responder-paywireref)
+06:32:36,895 INFO  [stdout] (Thread-100) (disabled-component PaymentGatewayref)
+06:32:36,895 INFO  [stdout] (Thread-100) (hasport PaymentGatewayref commitref)
+06:32:36,895 INFO  [stdout] (Thread-100) )
+06:32:36,895 INFO  [stdout] (Thread-100) (:goal (and
+06:32:36,895 INFO  [stdout] (Thread-100) (attach LifeFriendref payref paywireref requester-paywireref)
+06:32:36,895 INFO  [stdout] (Thread-100) (attach PaymentGatewayref commitref paywireref responder-paywireref)
+06:32:36,895 INFO  [stdout] (Thread-100) )))
+06:32:36,895 INFO  [stdout] (Thread-100) 
+06:32:36,896 INFO  [stdout] (Thread-100) Factory initiates....
+06:32:36,905 INFO  [stdout] (Thread-100) * starting search strategy
+06:32:36,908 INFO  [stdout] (Thread-100) java.lang.IllegalStateException: Instrumentation environment not initialised.
+06:32:36,908 INFO  [stdout] (Thread-100) java.lang.IllegalStateException: Instrumentation environment not initialised.
+06:32:36,908 INFO  [stdout] (Thread-100) * search strategy succeeded
+06:32:36,908 INFO  [stdout] (Thread-100) Output:5
+06:32:36,908 INFO  [stdout] (Thread-100) #### start given plan.....
+06:32:36,908 INFO  [stdout] (Thread-100) setup-componentcomponent:lifefriendref
+06:32:36,909 INFO  [stdout] (Thread-100) setup-connectorconnector:paywireref
+06:32:36,909 INFO  [stdout] (Thread-100) establish-linkcomponent:lifefriendrefport:payrefconnector:paywirerefrole:requester-paywireref
+06:32:36,909 INFO  [stdout] (Thread-100) setup-componentcomponent:paymentgatewayref
+06:32:36,910 INFO  [stdout] (Thread-100) establish-linkcomponent:paymentgatewayrefport:commitrefconnector:paywirerefrole:responder-paywireref
+06:32:36,910 INFO  [stdout] (Thread-100) #### end given plan.....
+06:32:36,910 INFO  [stdout] (Thread-100) Elapse Time: 16
+06:32:36,921 INFO  [stdout] (Thread-101) RefactorPlanner started...
+06:32:36,922 INFO  [stdout] (Thread-101) (define (problem lifegrid)
+06:32:36,922 INFO  [stdout] (Thread-101) (:domain arch)
+06:32:36,922 INFO  [stdout] (Thread-101) (:objects
+06:32:36,922 INFO  [stdout] (Thread-101) LifeGridref RequestDispatcher - component
+06:32:36,922 INFO  [stdout] (Thread-101) emwireref emwire - connector
+06:32:36,922 INFO  [stdout] (Thread-101) lookupref accept - port
+06:32:36,922 INFO  [stdout] (Thread-101) reader-emwireref readstorage-emwireref reader-emwire readstorage-emwire - role
+06:32:36,922 INFO  [stdout] (Thread-101) )
+06:32:36,922 INFO  [stdout] (Thread-101) (:init
+06:32:36,922 INFO  [stdout] (Thread-101) (disabled-connector emwireref)
+06:32:36,923 INFO  [stdout] (Thread-101) (hasrole emwireref reader-emwireref)
+06:32:36,923 INFO  [stdout] (Thread-101) (hasrole emwireref readstorage-emwireref)
+06:32:36,923 INFO  [stdout] (Thread-101) (disabled-component LifeGridref)
+06:32:36,923 INFO  [stdout] (Thread-101) (hasport LifeGridref lookupref)
+06:32:36,923 INFO  [stdout] (Thread-101) (enabled-component RequestDispatcher)
+06:32:36,923 INFO  [stdout] (Thread-101) (hasport RequestDispatcher accept)
+06:32:36,923 INFO  [stdout] (Thread-101) (attach RequestDispatcher accept emwire reader-emwire)
+06:32:36,923 INFO  [stdout] (Thread-101) (enabled-connector emwire)
+06:32:36,923 INFO  [stdout] (Thread-101) (hasrole emwire reader-emwire)
+06:32:36,923 INFO  [stdout] (Thread-101) (hasrole emwire readstorage-emwire)
+06:32:36,923 INFO  [stdout] (Thread-101) )
+06:32:36,923 INFO  [stdout] (Thread-101) (:goal (and
+06:32:36,923 INFO  [stdout] (Thread-101) (disabled-connector emwire)
+06:32:36,923 INFO  [stdout] (Thread-101) (attach RequestDispatcher accept emwireref reader-emwireref)
+06:32:36,924 INFO  [stdout] (Thread-101) (attach LifeGridref lookupref emwireref readstorage-emwireref)
+06:32:36,924 INFO  [stdout] (Thread-101) )))
+06:32:36,924 INFO  [stdout] (Thread-101) 
+06:32:36,924 INFO  [stdout] (Thread-101) Factory initiates....
+06:32:36,930 INFO  [stdout] (Thread-101) * starting search strategy
+06:32:36,937 INFO  [stdout] (Thread-101) java.lang.IllegalStateException: Instrumentation environment not initialised.
+06:32:36,937 INFO  [stdout] (Thread-101) java.lang.IllegalStateException: Instrumentation environment not initialised.
+06:32:36,937 INFO  [stdout] (Thread-101) * search strategy succeeded
+06:32:36,938 INFO  [stdout] (Thread-101) Output:5
+06:32:36,938 INFO  [stdout] (Thread-101) #### start given plan.....
+06:32:36,938 INFO  [stdout] (Thread-101) setup-connectorconnector:emwireref
+06:32:36,938 INFO  [stdout] (Thread-101) establish-linkcomponent:requestdispatcherport:acceptconnector:emwirerefrole:reader-emwireref
+06:32:36,938 INFO  [stdout] (Thread-101) setup-componentcomponent:lifegridref
+06:32:36,939 INFO  [stdout] (Thread-101) remove-connectorconnector:emwire
+06:32:36,939 INFO  [stdout] (Thread-101) establish-linkcomponent:lifegridrefport:lookuprefconnector:emwirerefrole:readstorage-emwireref
+06:32:36,940 INFO  [stdout] (Thread-101) #### end given plan.....
+06:32:36,940 INFO  [stdout] (Thread-101) Elapse Time: 18

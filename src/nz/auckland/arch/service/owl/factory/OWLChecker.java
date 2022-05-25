@@ -7,10 +7,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.semanticweb.HermiT.Configuration;
 import org.semanticweb.HermiT.Reasoner;
 import org.semanticweb.HermiT.ReasonerFactory;
@@ -59,10 +61,15 @@ import nz.auckland.arch.service.owl.utils.StringUtil;
 
 public abstract class OWLChecker {
 
-	private static final String DRIVE_LABEL = "D";
+	private static final String DRIVE_LABEL = "C:";
 
-	private final String TEMPLATE_URL = DRIVE_LABEL + ":/config/";
-	private static String OUTPUT_FILE_URL = DRIVE_LABEL + ":/config/arch";
+	private final String TEMPLATE_URL = DRIVE_LABEL + "/config/";
+	//private static String OUTPUT_FILE_URL = DRIVE_LABEL + ":/config/arch";
+	
+	//private static final String DRIVE_LABEL = "/home/nacha";
+	
+	//private final String TEMPLATE_URL = DRIVE_LABEL + "/";
+	private static String OUTPUT_FILE_URL = DRIVE_LABEL + "/arch/";
 	
 	private String owlLibrary;
 
@@ -152,7 +159,15 @@ public abstract class OWLChecker {
 
 					connClassList.add(newConnClass);
 					HashSet<OWLClass> set = new HashSet<OWLClass>();
-
+					
+					List<String> portTypeName = new ArrayList<String>();
+					for (ComponentType compTyp : style.getComponenttype()) {
+						for(PortType porttype: compTyp.getPorttype()) {
+							System.out.println(porttype.getName());
+							portTypeName.add(porttype.getName());
+						}
+					}
+					int i=0;
 					for (RoleType roleTyp : connTyp.getRoletype()) {
 						OWLClass setRoleCls = roleClass;
 
@@ -168,7 +183,9 @@ public abstract class OWLChecker {
 						set.add(newRoleClass);
 						// record the port-role association to hash table
 						if (roleTyp.getPorttype() != null) {
-							portRoleHash.put(roleTyp.getPorttype().getName(), newRoleClass);
+							System.out.println(roleTyp.getName()+"####"+newRoleClass);
+							//portRoleHash.put(roleTyp.getPorttype().getName(), newRoleClass); // error on linux
+							portRoleHash.put(portTypeName.get(i), newRoleClass);
 						}
 						roleClassHash.put(roleTyp.getName(), newRoleClass);
 
@@ -179,6 +196,7 @@ public abstract class OWLChecker {
 						} else {
 							roleTyp.setValid(true);
 						}
+						i++;
 					}
 					util.addClassIntersectSomeObjectProperties(newConnClass, set, "hasRole");
 
@@ -339,8 +357,13 @@ public abstract class OWLChecker {
 					HashSet<Port> portLinkage = new HashSet<Port>();
 					// loop through attached role
 					for (Role rle : port.getRole()) {
-
-						System.out.println(" roleName:" + rle.getName());
+						
+						//find connector id and role id <-workaround as parsed json have broken reference to role
+						String rleurl = rle.toString();
+						String connid = rleurl.substring(rleurl.lastIndexOf("connector.")+10,rleurl.lastIndexOf("/"));
+						String rleid = rleurl.substring(rleurl.lastIndexOf("role.")+5,rleurl.lastIndexOf(")"));
+						rle = model.getConnector().get(Integer.parseInt(connid)).getRole().get(Integer.parseInt(rleid));
+						System.out.println("Port:"+port.getName()+" attached to role:" + connid+"/"+rleid +"#"+rle.getName());
 						if (roleIndvHash.containsKey(rle)) {
 							util.addObjectProperties(portIndv, roleIndvHash.get(rle), "hasAttachment");
 						}
@@ -387,6 +410,8 @@ public abstract class OWLChecker {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			
 		}
 
 	}
@@ -432,11 +457,15 @@ public abstract class OWLChecker {
 				/********************************************/
 
 				System.out.println("computing class .....");
+				Date start = new Date();
 				rf = new ReasonerFactory();
+
 				reasoner = rf.createReasoner(ontology);
 				reasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
 				reasoner.precomputeInferences(InferenceType.CLASS_ASSERTIONS);
-
+				System.out.println("total computation time ("+model.getName()+"): "+((new Date()).getTime() -start.getTime()) +" ms.");
+				
+				
 				// check & set type for connector
 				List<OWLClass> connCheckList = new ArrayList<OWLClass>();
 				connCheckList.addAll(connClassList);

@@ -1,0 +1,124 @@
+05:01:10,958 INFO  [stdout] (Thread-98) RefactorPlanner started...
+05:01:10,959 INFO  [stdout] (Thread-98) (define (problem payment)
+05:01:10,959 INFO  [stdout] (Thread-98) (:domain arch)
+05:01:10,959 INFO  [stdout] (Thread-98) (:objects
+05:01:10,959 INFO  [stdout] (Thread-98) PaymentGatewayref OrdersService - component
+05:01:10,959 INFO  [stdout] (Thread-98) paywireref paywire - connector
+05:01:10,959 INFO  [stdout] (Thread-98) commitref postorder get - port
+05:01:10,959 INFO  [stdout] (Thread-98) requester-paywireref responder-paywireref writer-paywire writestorage-paywire - role
+05:01:10,959 INFO  [stdout] (Thread-98) )
+05:01:10,959 INFO  [stdout] (Thread-98) (:init
+05:01:10,959 INFO  [stdout] (Thread-98) (disabled-connector paywireref)
+05:01:10,959 INFO  [stdout] (Thread-98) (hasrole paywireref requester-paywireref)
+05:01:10,959 INFO  [stdout] (Thread-98) (hasrole paywireref responder-paywireref)
+05:01:10,959 INFO  [stdout] (Thread-98) (disabled-component PaymentGatewayref)
+05:01:10,959 INFO  [stdout] (Thread-98) (hasport PaymentGatewayref commitref)
+05:01:10,959 INFO  [stdout] (Thread-98) (enabled-component OrdersService)
+05:01:10,959 INFO  [stdout] (Thread-98) (hasport OrdersService postorder)
+05:01:10,960 INFO  [stdout] (Thread-98) (attach OrdersService postorder paywire writer-paywire)
+05:01:10,960 INFO  [stdout] (Thread-98) (hasport OrdersService get)
+05:01:10,960 INFO  [stdout] (Thread-98) (enabled-connector paywire)
+05:01:10,960 INFO  [stdout] (Thread-98) (hasrole paywire writer-paywire)
+05:01:10,960 INFO  [stdout] (Thread-98) (hasrole paywire writestorage-paywire)
+05:01:10,960 INFO  [stdout] (Thread-98) )
+05:01:10,960 INFO  [stdout] (Thread-98) (:goal (and
+05:01:10,960 INFO  [stdout] (Thread-98) (disabled-connector paywire)
+05:01:10,960 INFO  [stdout] (Thread-98) (attach OrdersService postorder paywireref requester-paywireref)
+05:01:10,960 INFO  [stdout] (Thread-98) (attach PaymentGatewayref commitref paywireref responder-paywireref)
+05:01:10,960 INFO  [stdout] (Thread-98) )))
+05:01:10,960 INFO  [stdout] (Thread-98) 
+05:01:10,960 INFO  [stdout] (Thread-98) Factory initiates....
+05:01:11,092 INFO  [stdout] (Thread-98) * starting search strategy
+05:01:11,094 INFO  [stdout] (Thread-98) java.lang.IllegalStateException: Instrumentation environment not initialised.
+05:01:11,095 INFO  [stdout] (Thread-98) java.lang.IllegalStateException: Instrumentation environment not initialised.
+05:01:11,095 INFO  [stdout] (Thread-98) * search strategy succeeded
+05:01:11,095 INFO  [stdout] (Thread-98) Output:5
+05:01:11,095 INFO  [stdout] (Thread-98) #### start given plan.....
+05:01:11,095 INFO  [stdout] (Thread-98) setup-connectorconnector:paywireref
+05:01:11,096 INFO  [stdout] (Thread-98) establish-linkcomponent:ordersserviceport:postorderconnector:paywirerefrole:requester-paywireref
+05:01:11,096 INFO  [stdout] (Thread-98) setup-componentcomponent:paymentgatewayref
+05:01:11,096 INFO  [stdout] (Thread-98) remove-connectorconnector:paywire
+05:01:11,096 INFO  [stdout] (Thread-98) establish-linkcomponent:paymentgatewayrefport:commitrefconnector:paywirerefrole:responder-paywireref
+05:01:11,096 INFO  [stdout] (Thread-98) #### end given plan.....
+05:01:11,096 INFO  [stdout] (Thread-98) Elapse Time: 137
+05:01:11,112 INFO  [stdout] (Thread-99) RefactorPlanner started...
+05:01:11,113 INFO  [stdout] (Thread-99) (define (problem sso)
+05:01:11,113 INFO  [stdout] (Thread-99) (:domain arch)
+05:01:11,113 INFO  [stdout] (Thread-99) (:objects
+05:01:11,113 INFO  [stdout] (Thread-99) SSOServerref ShopFrontend - component
+05:01:11,113 INFO  [stdout] (Thread-99) signwireref - connector
+05:01:11,113 INFO  [stdout] (Thread-99) sloginref authref login browse order shop - port
+05:01:11,113 INFO  [stdout] (Thread-99) requester-signwireref responder-signwireref - role
+05:01:11,113 INFO  [stdout] (Thread-99) )
+05:01:11,113 INFO  [stdout] (Thread-99) (:init
+05:01:11,113 INFO  [stdout] (Thread-99) (disabled-connector signwireref)
+05:01:11,114 INFO  [stdout] (Thread-99) (hasrole signwireref requester-signwireref)
+05:01:11,114 INFO  [stdout] (Thread-99) (hasport ShopFrontend sloginref)
+05:01:11,114 INFO  [stdout] (Thread-99) (hasrole signwireref responder-signwireref)
+05:01:11,114 INFO  [stdout] (Thread-99) (disabled-component SSOServerref)
+05:01:11,114 INFO  [stdout] (Thread-99) (hasport SSOServerref authref)
+05:01:11,114 INFO  [stdout] (Thread-99) (enabled-component ShopFrontend)
+05:01:11,114 INFO  [stdout] (Thread-99) (hasport ShopFrontend login)
+05:01:11,114 INFO  [stdout] (Thread-99) (hasport ShopFrontend browse)
+05:01:11,114 INFO  [stdout] (Thread-99) (hasport ShopFrontend order)
+05:01:11,114 INFO  [stdout] (Thread-99) (hasport ShopFrontend shop)
+05:01:11,114 INFO  [stdout] (Thread-99) )
+05:01:11,114 INFO  [stdout] (Thread-99) (:goal (and
+05:01:11,114 INFO  [stdout] (Thread-99) (attach ShopFrontend sloginref signwireref requester-signwireref)
+05:01:11,114 INFO  [stdout] (Thread-99) (attach SSOServerref authref signwireref responder-signwireref)
+05:01:11,114 INFO  [stdout] (Thread-99) )))
+05:01:11,114 INFO  [stdout] (Thread-99) 
+05:01:11,114 INFO  [stdout] (Thread-99) Factory initiates....
+05:01:11,118 INFO  [stdout] (Thread-99) * starting search strategy
+05:01:11,119 INFO  [stdout] (Thread-99) java.lang.IllegalStateException: Instrumentation environment not initialised.
+05:01:11,119 INFO  [stdout] (Thread-99) java.lang.IllegalStateException: Instrumentation environment not initialised.
+05:01:11,120 INFO  [stdout] (Thread-99) * search strategy succeeded
+05:01:11,120 INFO  [stdout] (Thread-99) Output:4
+05:01:11,120 INFO  [stdout] (Thread-99) #### start given plan.....
+05:01:11,120 INFO  [stdout] (Thread-99) setup-connectorconnector:signwireref
+05:01:11,120 INFO  [stdout] (Thread-99) establish-linkcomponent:shopfrontendport:sloginrefconnector:signwirerefrole:requester-signwireref
+05:01:11,121 INFO  [stdout] (Thread-99) setup-componentcomponent:ssoserverref
+05:01:11,122 INFO  [stdout] (Thread-99) establish-linkcomponent:ssoserverrefport:authrefconnector:signwirerefrole:responder-signwireref
+05:01:11,122 INFO  [stdout] (Thread-99) #### end given plan.....
+05:01:11,122 INFO  [stdout] (Thread-99) Elapse Time: 9
+05:01:11,130 INFO  [stdout] (Thread-100) RefactorPlanner started...
+05:01:11,131 INFO  [stdout] (Thread-100) (define (problem report)
+05:01:11,131 INFO  [stdout] (Thread-100) (:domain arch)
+05:01:11,131 INFO  [stdout] (Thread-100) (:objects
+05:01:11,131 INFO  [stdout] (Thread-100) BIReportref OrdersService - component
+05:01:11,131 INFO  [stdout] (Thread-100) orderquerywire orderreadwire - connector
+05:01:11,131 INFO  [stdout] (Thread-100) summariseref postorder get - port
+05:01:11,131 INFO  [stdout] (Thread-100) requester-orderquerywire responder-orderquerywire reader-orderreadwire readstorage-orderreadwire - role
+05:01:11,131 INFO  [stdout] (Thread-100) )
+05:01:11,131 INFO  [stdout] (Thread-100) (:init
+05:01:11,131 INFO  [stdout] (Thread-100) (hasrole orderquerywire requester-orderquerywire)
+05:01:11,131 INFO  [stdout] (Thread-100) (disabled-component BIReportref)
+05:01:11,131 INFO  [stdout] (Thread-100) (hasport BIReportref summariseref)
+05:01:11,132 INFO  [stdout] (Thread-100) (hasrole orderquerywire responder-orderquerywire)
+05:01:11,132 INFO  [stdout] (Thread-100) (hasrole orderreadwire reader-orderreadwire)
+05:01:11,132 INFO  [stdout] (Thread-100) (enabled-component OrdersService)
+05:01:11,132 INFO  [stdout] (Thread-100) (hasport OrdersService postorder)
+05:01:11,132 INFO  [stdout] (Thread-100) (hasport OrdersService get)
+05:01:11,132 INFO  [stdout] (Thread-100) (attach OrdersService get orderquerywire responder-orderquerywire)
+05:01:11,132 INFO  [stdout] (Thread-100) (attach OrdersService get orderreadwire reader-orderreadwire)
+05:01:11,132 INFO  [stdout] (Thread-100) (enabled-connector orderquerywire)
+05:01:11,132 INFO  [stdout] (Thread-100) (enabled-connector orderreadwire)
+05:01:11,132 INFO  [stdout] (Thread-100) (hasrole orderreadwire readstorage-orderreadwire)
+05:01:11,132 INFO  [stdout] (Thread-100) )
+05:01:11,132 INFO  [stdout] (Thread-100) (:goal (and
+05:01:11,132 INFO  [stdout] (Thread-100) (attach BIReportref summariseref orderquerywire requester-orderquerywire)
+05:01:11,132 INFO  [stdout] (Thread-100) (attach OrdersService get orderquerywire responder-orderquerywire)
+05:01:11,133 INFO  [stdout] (Thread-100) (attach OrdersService get orderreadwire reader-orderreadwire)
+05:01:11,133 INFO  [stdout] (Thread-100) )))
+05:01:11,133 INFO  [stdout] (Thread-100) 
+05:01:11,133 INFO  [stdout] (Thread-100) Factory initiates....
+05:01:11,135 INFO  [stdout] (Thread-100) * starting search strategy
+05:01:11,136 INFO  [stdout] (Thread-100) java.lang.IllegalStateException: Instrumentation environment not initialised.
+05:01:11,136 INFO  [stdout] (Thread-100) java.lang.IllegalStateException: Instrumentation environment not initialised.
+05:01:11,136 INFO  [stdout] (Thread-100) * search strategy succeeded
+05:01:11,136 INFO  [stdout] (Thread-100) Output:2
+05:01:11,136 INFO  [stdout] (Thread-100) #### start given plan.....
+05:01:11,136 INFO  [stdout] (Thread-100) setup-componentcomponent:bireportref
+05:01:11,136 INFO  [stdout] (Thread-100) establish-linkcomponent:bireportrefport:summariserefconnector:orderquerywirerole:requester-orderquerywire
+05:01:11,136 INFO  [stdout] (Thread-100) #### end given plan.....
+05:01:11,136 INFO  [stdout] (Thread-100) Elapse Time: 5

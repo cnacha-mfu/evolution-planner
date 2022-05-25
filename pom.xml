@@ -205,7 +205,7 @@
 		<dependency>
 			<groupId>nz.auckland.arch</groupId>
 			<artifactId>archmodel</artifactId>
-			<version>1.18</version>
+			<version>1.20</version>
 		</dependency>
 
 		<dependency>

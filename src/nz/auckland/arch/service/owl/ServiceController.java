@@ -96,6 +96,7 @@ import nz.auckland.arch.PortType;
 import nz.auckland.arch.Role;
 import nz.auckland.arch.RoleType;
 import nz.auckland.arch.planner.MigrationPlanner;
+import nz.auckland.arch.planner.RefactorPlanner;
 import nz.auckland.arch.planner.object.Action;
 import nz.auckland.arch.planner.object.MigrationRequest;
 import nz.auckland.arch.planner.object.Parameter;
@@ -109,7 +110,6 @@ import nz.auckland.arch.service.owl.utils.StringUtil;
 @Controller
 public class ServiceController {
 	
-	private static String PDDL_URL = "D:/config/pddl/";
 
 	
 	@RequestMapping(value = "/api/owl/planMigration", method = RequestMethod.POST)
@@ -135,11 +135,36 @@ public class ServiceController {
 			MigrationPlanner mplanner = new MigrationPlanner(sourceModel, targetModel);
 			Plan migrationPlan = mplanner.run();
 			
+			
 			// TODO: generate plan based on this migration model
 			
 			
 			
 		     return gson.toJson(migrationPlan);
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return "";
+	}
+	
+	@RequestMapping(value = "/api/plan/planRefactor", method = RequestMethod.POST)
+	@ResponseBody
+	public synchronized String planRefactor(@RequestBody String problemStr) {
+		try {
+						
+			//generate plan
+		    RefactorPlanner rplanner = new RefactorPlanner(problemStr);
+		    Thread t = new Thread(rplanner);
+		    t.start();
+		    t.join();
+
+
+			GsonBuilder builder = new GsonBuilder(); 
+		    Gson gson = builder.create();
+		    String json = gson.toJson(rplanner.getRefactorPlan());
+		   // System.out.println(json);
+		     return json;
 			
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -314,6 +339,7 @@ public class ServiceController {
 			System.out.println(" component: "+model.getComponent().size());
 			
 			OWLSecurityChecker checker = new OWLSecurityChecker(model);
+			checker.setTemplate("arch.owl");
 			checker.check();
 			
 			// convert model to JSON
@@ -450,60 +476,70 @@ public class ServiceController {
 	private EObject loadDesignModelFromString(String modelStr, EPackage ePackage) throws IOException { 
 		System.out.println("Parsing JSON to EObject");
 		
-	    ResourceSet resourceSet = new ResourceSetImpl();
+		ResourceSet resourceSet = new ResourceSetImpl();
 	    resourceSet.getPackageRegistry().put(EcorePackage.eNS_URI, EcorePackage.eINSTANCE);
 	    resourceSet.getPackageRegistry().put(ePackage.getNsURI(), ePackage);
 	    resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new JsonResourceFactory());
-	    
-	    /*
-	    Resource resource = resourceSet.createResource(URI.createURI("http://www.example.org/arch"));
-	    ByteArrayInputStream stream = new ByteArrayInputStream(modelStr.getBytes(StandardCharsets.UTF_8));
-	    Map<String, Object> options = new HashMap<>();
-	    options.put(EMFJs.OPTION_URI_HANDLER, new IdentityURIHandler());
-	   
-	    resource.load(stream, options);
-	    return resource.getContents().get(0);
-	     */
-	   
-	    ObjectMapper mapper = new ObjectMapper();
-	    EMFModule module = new EMFModule();
 
-	    mapper.registerModule(module);
-	  
-		Resource resource = mapper
-				  .reader()
-				    .withAttribute(EMFContext.Attributes.RESOURCE_SET, resourceSet)
-				    .forType(Resource.class)
-				    .readValue(modelStr);
-		 DesignModel model = (DesignModel)resource.getContents().get(0);
-		 
-		/*
-		JsonNode rootNode = mapper.readTree(modelStr);
-        JsonNode componentNode = rootNode.path("component");
-    //    model.getComponent().clear();
-        int i=0;
-        for (JsonNode node : componentNode) {
-        	System.out.println("reading "+node.toString());
-        	Component comp = mapper
-			  .reader()
-			    .withAttribute(EMFContext.Attributes.RESOURCE_SET, resourceSet)
-			    .forType(Component.class)
-			    .readValue(node);
-        //	  model.getComponent().get(i).eIsSet(comp.eClass().getEStructuralFeature(0));
-        	 comp.getPort().addAll(model.getComponent().get(i).getPort());
-        	 System.out.println(mapper.writeValueAsString(comp));
-        	 model.getComponent().set(i, comp);
-        	 System.out.println(mapper.writeValueAsString( resource.getContents().get(0)));
-        //	model.getComponent().add(comp);
-        	i++;
-        }
+		Resource resource = resourceSet.createResource(URI.createURI("data.json"));
+		ByteArrayInputStream stream = new ByteArrayInputStream(modelStr.getBytes(StandardCharsets.UTF_8));
+		resource.load(stream, null);
+		return resource.getContents().get(0);
+		
+//	    ResourceSet resourceSet = new ResourceSetImpl();
+//	    resourceSet.getPackageRegistry().put(EcorePackage.eNS_URI, EcorePackage.eINSTANCE);
+//	    resourceSet.getPackageRegistry().put(ePackage.getNsURI(), ePackage);
+//	    resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new JsonResourceFactory());
+//	    
+//	    
+//	    Resource resource = resourceSet.createResource(URI.createURI("http://www.example.org/arch"));
+//	    ByteArrayInputStream stream = new ByteArrayInputStream(modelStr.getBytes(StandardCharsets.UTF_8));
+//	    Map<String, Object> options = new HashMap<>();
+//	    options.put(EMFJs.OPTION_URI_HANDLER, new IdentityURIHandler());
+//	   
+//	    resource.load(stream, options);
+//	    System.out.println( resource.toString());
+	     
+	   
+//	    ObjectMapper mapper = new ObjectMapper();
+//	    EMFModule module = new EMFModule();
+//
+//	    mapper.registerModule(module);
+//	    //System.out.println(modelStr);
+//		resource = mapper
+//				  .reader()
+//				    .withAttribute(EMFContext.Attributes.RESOURCE_SET, resourceSet)
+//				    .forType(Resource.class)
+//				    .readValue(modelStr);
+//		 DesignModel model = (DesignModel)resource.getContents().get(0);
+		
+		
+//		JsonNode rootNode = mapper.readTree(modelStr);
+//        JsonNode componentNode = rootNode.path("component");
+//    //    model.getComponent().clear();
+//        int i=0;
+//        for (JsonNode node : componentNode) {
+//        	System.out.println("reading "+node.toString());
+//        	Component comp = mapper
+//			  .reader()
+//			    .withAttribute(EMFContext.Attributes.RESOURCE_SET, resourceSet)
+//			    .forType(Component.class)
+//			    .readValue(node);
+//        //	  model.getComponent().get(i).eIsSet(comp.eClass().getEStructuralFeature(0));
+//        	 comp.getPort().addAll(model.getComponent().get(i).getPort());
+//        	 System.out.println(mapper.writeValueAsString(comp));
+//        	 model.getComponent().set(i, comp);
+//        	 System.out.println(mapper.writeValueAsString( resource.getContents().get(0)));
+//        //	model.getComponent().add(comp);
+//        	i++;
+//        }
 
 		
-	  System.out.println("######### finish reading value");
-	  System.out.println(mapper.writeValueAsString(model));
-	  System.out.println("######### finish reading value");
-	  */
-		return model;
+//	  System.out.println("######### finish reading value");
+//	  System.out.println(mapper.writeValueAsString(model));
+//	  System.out.println("######### finish reading value");
+//	  
+//		return model;
 	}
 	
 
